@@ -1,0 +1,98 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Shape 
+{
+public:
+    virtual void Show() const = 0;
+    virtual ~Shape() {}
+};
+
+class Square : public Shape 
+{
+private:
+    int x; 
+    int y; 
+    int side;
+
+public:
+    Square(int x, int y, int side) : x{ x }, y{ y }, side{ side } {}
+
+    void Show() const override 
+    {
+        cout << x << y << side;
+    }
+};
+
+class Rectangle : public Shape 
+{
+private:
+    int x; 
+    int y; 
+    int width; 
+    int height; 
+
+public:
+    Rectangle(int x, int y, int width, int height) : x{ x }, y{ y }, width{ width }, height{ height } {}
+
+    void Show() const override 
+    {
+        cout << x << y << width << height;
+    }
+};
+
+class Circle : public Shape 
+{
+private:
+    int centerx; 
+    int centery;
+    int radius;
+
+public:
+    Circle(int centerx, int centery, int radius) : centerx{ centerx }, centery{ centery }, radius{ radius } {}
+
+    void Show() const override 
+    {
+        cout << centerx << centery << radius;
+    }
+};
+
+class Ellipse : public Shape 
+{
+private:
+    int x; 
+    int y;
+    int width; 
+    int height; 
+
+public:
+    Ellipse(int x, int y, int width, int height) : x{ x }, y{ y }, width{ width }, height{ height } {}
+
+    void Show() const override
+    {
+        cout << x << y << width << height;
+    }
+};
+
+int main() 
+{
+    Shape* shapes[4];
+    shapes[0] = new Square(0, 0, 5);
+    shapes[1] = new Rectangle(1, 1, 4, 2);
+    shapes[2] = new Circle(2, 2, 3);
+    shapes[3] = new Ellipse(3, 3, 6, 4);
+
+    for (int i = 0; i < 4; ++i) 
+    {
+        shapes[i]->Show();
+    }
+
+    for (int i = 0; i < 4; ++i) 
+    {
+        delete shapes[i];
+    }
+
+    return 0;
+}
